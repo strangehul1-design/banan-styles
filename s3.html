@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Горный монохром - превью стиля</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@200;400;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0b0b0c; --bg2:#121214; --line:#26262a; --txt:#f2f2f3; --mut:#8d8d93;
+  --ease-out:cubic-bezier(.23,1,.32,1);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{-webkit-text-size-adjust:100%}
+body{
+  background:var(--bg); color:var(--txt);
+  font-family:"Inter Tight",system-ui,sans-serif; font-size:17px; line-height:1.6;
+  overflow-x:hidden;
+}
+.sheet{max-width:1100px;margin:0 auto;padding-left:26px;padding-right:26px}
+.mono{font-family:"IBM Plex Mono",monospace;font-size:12px;letter-spacing:.08em;color:var(--mut)}
+
+.ribbon{
+  border-bottom:1px solid var(--line); color:var(--mut);
+  font-family:"IBM Plex Mono",monospace; font-size:12px; letter-spacing:.08em;
+  padding:10px 26px; display:flex; gap:16px; flex-wrap:wrap;
+}
+.ribbon a{color:var(--txt)}
+
+header{
+  padding-top:20px;padding-bottom:20px;border-bottom:1px solid var(--line);
+  display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;
+}
+.logo{font-weight:600;font-size:17px;letter-spacing:.14em;text-transform:uppercase}
+
+/* герой */
+.hero{
+  padding-top:80px;padding-bottom:60px;text-align:center;position:relative;
+}
+.hero::after{
+  content:"";position:absolute;inset:auto 0 0 0;height:1px;background:var(--line);
+}
+h1{
+  font-weight:200;font-size:clamp(32px,5.4vw,62px);line-height:1.08;
+  letter-spacing:-.025em;max-width:17ch;margin:0 auto 20px;
+}
+h1 em{font-style:normal;font-weight:600}
+.hero p{color:var(--mut);max-width:52ch;margin:0 auto;font-size:17px}
+
+/* силуэт горы, нарисован кодом */
+.ridge{display:block;width:100%;height:190px;margin-top:46px}
+
+/* подбор ростовки */
+.fit{padding-top:62px;padding-bottom:30px;display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center}
+.fit h2{font-weight:200;font-size:clamp(26px,3.6vw,38px);letter-spacing:-.02em;margin-bottom:14px}
+.fit h2 em{font-style:normal;font-weight:600}
+.fit .d{color:var(--mut);margin-bottom:30px;max-width:44ch}
+
+.ctrl{border-top:1px solid var(--line);padding-top:22px}
+.ctrl .lab{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:12px}
+.ctrl .val{font-weight:600;font-size:28px;letter-spacing:-.02em}
+input[type=range]{width:100%;accent-color:#f2f2f3;height:28px}
+input[type=range]:focus-visible{outline:2px solid #f2f2f3;outline-offset:4px}
+
+.out{
+  margin-top:26px;border:1px solid var(--line);border-radius:4px;background:var(--bg2);
+  padding:22px;display:flex;justify-content:space-between;align-items:flex-end;gap:16px;flex-wrap:wrap;
+}
+.out .res{font-weight:600;font-size:34px;letter-spacing:-.02em;line-height:1.1}
+.out .res small{display:block;font-weight:400;font-size:12px;letter-spacing:.08em;color:var(--mut);margin-top:6px;font-family:"IBM Plex Mono",monospace}
+
+.viz{position:relative;display:grid;grid-template-columns:62px 1fr;gap:14px;align-items:stretch;min-height:440px}
+.ruler{position:relative;border-right:1px solid var(--line)}
+.ruler i{
+  position:absolute;right:0;width:12px;height:1px;background:var(--line);
+}
+.ruler i.maj{width:26px;background:#3b3b41}
+.ruler span{
+  position:absolute;right:32px;transform:translateY(-50%);
+  font-family:"IBM Plex Mono",monospace;font-size:11px;color:var(--mut);
+}
+.rider{
+  position:absolute;left:8px;bottom:0;width:22px;border-radius:11px 11px 0 0;
+  background:linear-gradient(to top,#2e2e34,#4a4a52);
+  transition:height .35s var(--ease-out);
+}
+.stage{position:relative}
+.stage canvas{width:100%;height:100%;display:block;cursor:grab;min-height:440px}
+.stage canvas:active{cursor:grabbing}
+
+.note{
+  color:var(--mut);font-size:13px;line-height:1.7;
+  border-top:1px solid var(--line);padding-top:18px;
+  margin-top:40px;margin-bottom:60px;max-width:66ch;
+}
+
+@media (max-width:900px){
+  .sheet{padding-left:18px;padding-right:18px}
+  .fit{grid-template-columns:1fr;gap:30px;padding-top:44px}
+  .viz{min-height:340px}
+  .stage canvas{min-height:340px}
+  .hero{padding-top:50px}
+}
+</style>
+</head>
+<body>
+
+<div class="ribbon">ПРЕВЬЮ СТИЛЯ 3 ИЗ 5 — «ГОРНЫЙ МОНОХРОМ» <a href="index.html">← ВСЕ ВАРИАНТЫ</a></div>
+
+<div class="sheet">
+  <header>
+    <div class="logo">Банан Борд Шоп</div>
+    <div class="mono">ЧЕЛЯБИНСК / 7 (351) 900-31-19</div>
+  </header>
+
+  <section class="hero">
+    <h1>Доска подбирается под рост, <em>а не под картинку</em></h1>
+    <p>1 681 позиция в каталоге. Два магазина в Челябинске, доставка СДЭК и Почтой по России, Беларуси и Казахстану.</p>
+    <svg class="ridge" viewBox="0 0 1200 190" preserveAspectRatio="none" aria-hidden="true">
+      <polygon points="0,190 180,96 300,138 470,42 620,120 780,66 940,130 1080,88 1200,152 1200,190" fill="#16161a"/>
+      <polygon points="0,190 230,122 400,152 560,88 720,142 880,104 1040,158 1200,124 1200,190" fill="#1f1f25"/>
+      <polyline points="470,42 520,78 560,58 620,120" fill="none" stroke="#3a3a42" stroke-width="1"/>
+    </svg>
+  </section>
+
+  <section class="fit">
+    <div>
+      <h2>Подбор <em>ростовки</em></h2>
+      <p class="d">Главный страх новичка - взять не ту длину. Двигайте рост, доска на экране меняет длину вместе с цифрами.</p>
+
+      <div class="ctrl">
+        <div class="lab">
+          <span class="mono">ВАШ РОСТ</span>
+          <span class="val" id="hv">175 см</span>
+        </div>
+        <input type="range" id="h" min="150" max="200" step="1" value="175" aria-label="Ваш рост в сантиметрах">
+      </div>
+
+      <div class="out">
+        <div class="res" id="res">153 – 161 см<small>ОРИЕНТИРОВОЧНАЯ ДЛИНА ДОСКИ</small></div>
+        <div class="mono" id="cnt">ПОДХОДИТ ПОЗИЦИЙ: —</div>
+      </div>
+    </div>
+
+    <div class="viz">
+      <div class="ruler" id="ruler"><div class="rider" id="rider"></div></div>
+      <div class="stage"><canvas id="c" aria-label="Трёхмерная модель сноуборда, длина меняется от роста"></canvas></div>
+    </div>
+  </section>
+
+  <p class="note">Это превью стиля, а не готовый сайт. Диапазон длины здесь рассчитан по общему правилу «доска до подбородка» и показан как ориентир - на рабочем сайте подставим вашу таблицу ростовок и реальное количество подходящих позиций. Доска нарисована кодом, это не снимок конкретной модели.</p>
+</div>
+
+<script type="module">
+import { createBoardScene } from './board.js';
+await document.fonts.ready;
+
+const scene = createBoardScene(document.getElementById('c'), {
+  deck:'#ececee', ink:'#101013', graphic:'mono', side:'#1a1a1d',
+  env:['#d8d8de','#101014'],
+  key:'#ffffff', keyI:2.9, rim:'#ffffff', rimI:1.1, fill:'#ffffff', fillI:0.35,
+  exposure:0.98, bindings:false, float:false,
+  yaw:-0.28, pitch:0.05, fit:3.45, autoSpin:0.0016
+});
+
+/* линейка роста */
+const ruler = document.getElementById('ruler');
+for (let cm = 150; cm <= 200; cm += 5){
+  const y = 100 - ((cm - 140) / 65) * 100;
+  const i = document.createElement('i');
+  i.className = cm % 10 === 0 ? 'maj' : '';
+  i.style.top = y + '%';
+  ruler.appendChild(i);
+  if (cm % 10 === 0){
+    const s = document.createElement('span');
+    s.style.top = y + '%'; s.textContent = cm;
+    ruler.appendChild(s);
+  }
+}
+
+const slider = document.getElementById('h');
+const hv = document.getElementById('hv');
+const res = document.getElementById('res');
+const rider = document.getElementById('rider');
+
+function update(){
+  const h = +slider.value;
+  const lo = h - 22, hi = h - 14;
+  hv.textContent = h + ' см';
+  res.innerHTML = lo + ' – ' + hi + ' см<small>ОРИЕНТИРОВОЧНАЯ ДЛИНА ДОСКИ</small>';
+  rider.style.height = ((h - 140) / 65 * 100) + '%';
+  scene.setLengthScale(((lo + hi) / 2) / 157);
+}
+slider.addEventListener('input', update);
+update();
+</script>
+</body>
+</html>

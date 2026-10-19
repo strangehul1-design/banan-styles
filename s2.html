@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Жёлтый зин - превью стиля</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;600;900&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#f6f4ef; --ink:#0d0d0d; --yel:#ffe14d; --mut:#6b6a66;
+  --ease-out:cubic-bezier(.23,1,.32,1);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{-webkit-text-size-adjust:100%}
+body{
+  background:var(--paper); color:var(--ink);
+  font-family:Rubik,system-ui,sans-serif; font-size:17px; line-height:1.55;
+  overflow-x:hidden;
+}
+.sheet{max-width:1180px;margin:0 auto;padding-left:26px;padding-right:26px}
+
+.ribbon{
+  background:var(--ink); color:var(--paper);
+  font:600 12px/1 Rubik,sans-serif; letter-spacing:.05em;
+  padding:9px 26px; display:flex; gap:14px; flex-wrap:wrap; align-items:center;
+}
+.ribbon a{color:var(--yel)}
+
+header{
+  padding-top:16px;padding-bottom:16px;
+  display:flex;align-items:baseline;justify-content:space-between;gap:16px;flex-wrap:wrap;
+  border-bottom:3px solid var(--ink);
+}
+.logo{font-weight:900;font-size:20px;letter-spacing:-.02em}
+.hmeta{font-size:14px;color:var(--mut)}
+
+/* герой: доска поверх крупной типографики */
+.hero{position:relative;padding-top:34px;padding-bottom:10px}
+.big{
+  font-weight:900; letter-spacing:-.045em; line-height:.82;
+  font-size:clamp(58px,15.5vw,190px); text-transform:uppercase;
+  position:relative; z-index:2; pointer-events:none;
+}
+.big .l2{display:block;margin-left:.06em}
+.big .hl{
+  background:var(--yel); padding:0 .07em; margin-left:-.05em;
+  box-decoration-break:clone; -webkit-box-decoration-break:clone;
+}
+.stage{
+  position:absolute; z-index:3; right:-2%; top:-4%;
+  width:47%; height:118%; pointer-events:auto;
+}
+.stage canvas{width:100%;height:100%;display:block;cursor:grab}
+.stage canvas:active{cursor:grabbing}
+
+.underline{
+  position:relative;z-index:4;
+  display:grid;grid-template-columns:1fr 300px;gap:30px;align-items:end;
+  margin-top:26px;padding-bottom:36px;border-bottom:3px solid var(--ink);
+}
+.underline p{max-width:46ch;font-size:18px}
+.underline .hint{font-size:13px;color:var(--mut)}
+
+/* бегущая строка брендов */
+.marq{
+  overflow:hidden;background:var(--yel);border-bottom:3px solid var(--ink);
+  padding-top:13px;padding-bottom:13px;
+}
+.marq .track{
+  display:flex;gap:34px;width:max-content;
+  font-weight:900;font-size:21px;letter-spacing:-.01em;text-transform:uppercase;
+  animation:slide 26s linear infinite;
+}
+@keyframes slide{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+@media (prefers-reduced-motion:reduce){ .marq .track{animation:none} }
+
+/* витрина */
+.shelf{padding-top:44px;padding-bottom:20px}
+.shelf h2{font-weight:900;font-size:clamp(26px,4vw,40px);letter-spacing:-.03em;text-transform:uppercase;margin-bottom:22px}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.card{border:3px solid var(--ink);background:#fff;padding:18px;display:flex;flex-direction:column;gap:12px}
+.ph{
+  aspect-ratio:4/5;background:
+    repeating-linear-gradient(135deg,#ece9e1 0 11px,#f6f4ef 11px 22px);
+  border:1px solid #ddd9cf;display:grid;place-items:center;
+  color:var(--mut);font-size:12px;text-align:center;padding:12px;
+}
+.card b{font-weight:600;font-size:16px}
+.card .pr{font-weight:900;font-size:22px}
+.card .br{font-size:13px;color:var(--mut);text-transform:uppercase;letter-spacing:.07em}
+
+.note{
+  color:var(--mut);font-size:13px;line-height:1.7;
+  border-left:3px solid var(--yel);padding-left:16px;
+  margin-top:34px;margin-bottom:60px;max-width:62ch;
+}
+
+@media (max-width:860px){
+  .sheet{padding-left:18px;padding-right:18px}
+  .stage{position:relative;right:auto;top:auto;width:100%;height:auto;aspect-ratio:1/1;margin-top:-6px}
+  .big{font-size:clamp(46px,13vw,80px)}
+  .underline{grid-template-columns:1fr;gap:14px}
+  .grid{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<div class="ribbon">Превью стиля 2 из 5 - «Жёлтый зин» <a href="index.html">← все варианты</a></div>
+
+<div class="sheet">
+  <header>
+    <div class="logo">БАНАН БОРД ШОП</div>
+    <div class="hmeta">Челябинск · Сони Кривой, 63 · пр. Ленина, 86</div>
+  </header>
+
+  <section class="hero">
+    <div class="stage">
+      <canvas id="c" aria-label="Трёхмерная модель сноуборда, можно вращать"></canvas>
+    </div>
+    <h1 class="big">Сезон<span class="l2"><span class="hl">открыт</span></span></h1>
+  </section>
+
+  <div class="underline">
+    <p>1 681 позиция в каталоге: доски, крепления, ботинки, маски, одежда. Два магазина в Челябинске, доставка СДЭК и Почтой по России, Беларуси и Казахстану.</p>
+    <div class="hint">Доску можно крутить пальцем. При прокрутке страницы она поворачивается сама.</div>
+  </div>
+</div>
+
+<div class="marq" aria-hidden="true">
+  <div class="track">
+    <span>BURTON</span><span>CAPITA</span><span>LIB TECH</span><span>UNION</span><span>DC SHOES</span><span>ROXY</span><span>OSIRIS</span><span>C1RCA</span><span>ANTEATER</span>
+    <span>BURTON</span><span>CAPITA</span><span>LIB TECH</span><span>UNION</span><span>DC SHOES</span><span>ROXY</span><span>OSIRIS</span><span>C1RCA</span><span>ANTEATER</span>
+  </div>
+</div>
+
+<div class="sheet">
+  <section class="shelf">
+    <h2>Свежий дроп</h2>
+    <div class="grid">
+      <article class="card">
+        <div class="ph">здесь фотография товара из вашего каталога</div>
+        <div class="br">DC Shoes</div>
+        <b>Толстовка</b>
+        <div class="pr">3 150 ₽</div>
+      </article>
+      <article class="card">
+        <div class="ph">здесь фотография товара из вашего каталога</div>
+        <div class="br">Roxy</div>
+        <b>Толстовка</b>
+        <div class="pr">3 390 ₽</div>
+      </article>
+      <article class="card">
+        <div class="ph">здесь фотография товара из вашего каталога</div>
+        <div class="br">Osiris</div>
+        <b>Толстовка</b>
+        <div class="pr">5 430 ₽</div>
+      </article>
+    </div>
+  </section>
+
+  <p class="note">Это превью стиля, а не готовый сайт. Три цены выше взяты из вашего каталога ВКонтакте, фотографии подставим ваши. Доска нарисована кодом - форма и графика сгенерированы, это не снимок конкретной модели.</p>
+</div>
+
+<script type="module">
+import { createBoardScene } from './board.js';
+await document.fonts.ready;
+const scene = createBoardScene(document.getElementById('c'), {
+  deck:'#ffe14d', ink:'#0d0d0d', graphic:'banana', side:'#141414',
+  env:['#ffffff','#b9b6ad'],
+  key:'#ffffff', keyI:3.0, rim:'#ffe14d', rimI:1.2, fill:'#ffffff', fillI:0.8,
+  exposure:1.0, bindings:false,
+  yaw:-0.35, pitch:-0.06, fit:3.4, roll:-0.38, autoSpin:0
+});
+
+/* поворот по прокрутке: только пока герой на экране */
+const hero = document.querySelector('.hero');
+let base = -0.35, ticking = false;
+function onScroll(){
+  if (ticking) return;
+  ticking = true;
+  requestAnimationFrame(() => {
+    const r = hero.getBoundingClientRect();
+    const p = Math.min(1, Math.max(0, -r.top / (r.height + window.innerHeight * .6)));
+    scene.setYaw(base + p * 2.2);
+    ticking = false;
+  });
+}
+if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches){
+  window.addEventListener('scroll', onScroll, { passive:true });
+}
+</script>
+</body>
+</html>

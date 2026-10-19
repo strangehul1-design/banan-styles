@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Neural Noir - превью стиля</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@1,500;1,700&family=Inter:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0a0a0a; --gold:#a78b71; --gold-lt:#c9b8a0; --gold-hi:#e8d5b7;
+  --glass:rgba(255,255,255,.03); --glass-br:rgba(255,255,255,.1);
+  --txt:#f4f4f5; --mut:#9a9aa0;
+  --ease-out:cubic-bezier(.23,1,.32,1);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{-webkit-text-size-adjust:100%}
+body{
+  background:var(--bg); color:var(--txt);
+  font-family:Inter,system-ui,sans-serif; font-weight:300; font-size:16px; line-height:1.65;
+  overflow-x:hidden;
+  background-image:radial-gradient(rgba(255,255,255,.08) 1px, transparent 1px);
+  background-size:32px 32px;
+}
+.sheet{max-width:1200px;margin:0 auto;padding-left:26px;padding-right:26px}
+.lbl{font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);font-weight:500}
+
+.ribbon{
+  background:rgba(255,255,255,.04);backdrop-filter:blur(10px);
+  border-bottom:1px solid var(--glass-br);
+  font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#b9b9bd;
+  padding:10px 26px;display:flex;gap:16px;flex-wrap:wrap;
+}
+.ribbon a{color:var(--gold-hi)}
+
+nav{
+  padding-top:20px;padding-bottom:20px;
+  display:flex;align-items:center;justify-content:space-between;gap:20px;
+}
+.brand{font-family:"Playfair Display",serif;font-style:italic;font-weight:700;font-size:21px;letter-spacing:.01em}
+.nlinks{display:flex;gap:26px;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#a0a0a6}
+.pill{
+  background:#fff;color:#0a0a0a;border:0;border-radius:999px;
+  font:500 12px/1 Inter,sans-serif;padding:12px 20px;cursor:pointer;
+  transition:transform .14s var(--ease-out),box-shadow .2s var(--ease-out);
+}
+@media (hover:hover) and (pointer:fine){ .pill:hover{box-shadow:0 0 30px rgba(232,213,183,.35)} }
+.pill:active{transform:scale(.97)}
+
+.head{padding-top:46px;text-align:center}
+.live{
+  display:inline-flex;align-items:center;gap:9px;
+  background:var(--glass);backdrop-filter:blur(10px);
+  border:1px solid var(--glass-br);border-radius:999px;padding:7px 15px;margin-bottom:26px;
+}
+.live i{width:8px;height:8px;border-radius:50%;background:#4ade80;animation:breathe 2s ease-in-out infinite}
+@keyframes breathe{0%,100%{opacity:1}50%{opacity:.35}}
+@media (prefers-reduced-motion:reduce){ .live i{animation:none} }
+.live b{font-size:9px;letter-spacing:.2em;color:#4ade80}
+.live span{font-size:12px;color:#d6d6da}
+
+h1{
+  font-family:"Playfair Display",serif;font-style:italic;font-weight:500;
+  font-size:clamp(34px,7vw,74px);line-height:1.04;letter-spacing:-.01em;
+  max-width:16ch;margin:0 auto 18px;
+}
+h1 u{text-decoration:none;color:var(--gold)}
+.head p{color:#a8a8ae;max-width:50ch;margin:0 auto}
+
+/* узел и спутники */
+.net{position:relative;margin-top:54px;min-height:560px}
+.lines{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:1}
+.node-line{stroke-width:2.5;fill:none;animation:pulse 3.4s ease-in-out infinite}
+.node-line.dash{stroke-dasharray:5 15;stroke-width:1.2;opacity:.5;animation:none}
+@keyframes pulse{0%,100%{opacity:.4}50%{opacity:.75}}
+@media (prefers-reduced-motion:reduce){ .node-line{animation:none;opacity:.55} }
+
+.hub{
+  position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);
+  width:min(500px,62%);aspect-ratio:16/10;z-index:2;
+  background:var(--glass);backdrop-filter:blur(10px);
+  border:1px solid var(--glass-br);border-radius:32px;overflow:hidden;
+  box-shadow:0 0 100px rgba(167,139,113,.2);
+}
+.hub canvas{width:100%;height:100%;display:block;cursor:grab}
+.hub canvas:active{cursor:grabbing}
+.hub .cap{
+  position:absolute;left:20px;bottom:16px;font-size:11px;letter-spacing:.16em;
+  text-transform:uppercase;color:#8e8e94;
+}
+
+.sat{
+  position:absolute;z-index:3;width:210px;
+  background:var(--glass);backdrop-filter:blur(10px);
+  border:1px solid var(--glass-br);border-radius:20px;padding:16px;
+  transition:transform .5s var(--ease-out),border-color .3s var(--ease-out),box-shadow .5s var(--ease-out);
+}
+@media (hover:hover) and (pointer:fine){
+  .sat:hover{transform:scale(1.05);border-color:rgba(232,213,183,.45);box-shadow:0 0 60px rgba(167,139,113,.3)}
+}
+.sat .ph{
+  aspect-ratio:4/3;border-radius:12px;margin-bottom:12px;
+  background:linear-gradient(135deg,#1a1a1c,#121214);
+  border:1px solid rgba(255,255,255,.06);
+  display:grid;place-items:center;font-size:10px;color:#6c6c72;text-align:center;padding:10px;
+}
+.sat b{display:block;font-weight:500;font-size:15px;margin-bottom:3px}
+.sat .pr{font-size:13px;color:var(--gold-lt)}
+.s1{left:0;top:4%} .s2{right:0;top:12%} .s3{left:3%;bottom:4%} .s4{right:2%;bottom:0}
+
+.sum{
+  margin-top:36px;margin-bottom:26px;
+  background:var(--glass);backdrop-filter:blur(10px);
+  border:1px solid var(--glass-br);border-radius:24px;padding:24px 26px;
+  display:flex;justify-content:space-between;align-items:flex-end;gap:18px;flex-wrap:wrap;
+}
+.sum .t{font-size:13px;color:#9a9aa0}
+.sum .v{font-family:"Playfair Display",serif;font-style:italic;font-weight:700;font-size:40px;color:var(--gold-hi);line-height:1.1}
+
+.note{
+  color:#85858b;font-size:12.5px;line-height:1.75;
+  border-left:1px solid var(--glass-br);padding-left:16px;
+  margin-bottom:60px;max-width:64ch;
+}
+
+@media (max-width:960px){
+  .sheet{padding-left:18px;padding-right:18px}
+  .nlinks{display:none}
+  .net{min-height:0;display:flex;flex-direction:column;gap:14px;margin-top:34px}
+  .lines{display:none}
+  .hub{position:static;transform:none;width:100%;aspect-ratio:1/1;border-radius:24px}
+  .sat{position:static;width:100%;display:grid;grid-template-columns:84px 1fr;gap:14px;align-items:center}
+  .sat .ph{margin-bottom:0;aspect-ratio:1/1}
+  .sum .v{font-size:32px}
+}
+</style>
+</head>
+<body>
+
+<div class="ribbon">Превью стиля 4 из 5 — Neural Noir <a href="index.html">← все варианты</a></div>
+
+<div class="sheet">
+  <nav>
+    <div class="brand">Банан</div>
+    <div class="nlinks"><span>Доски</span><span>Крепления</span><span>Ботинки</span><span>Одежда</span><span>Магазины</span></div>
+    <button class="pill">Собрать комплект</button>
+  </nav>
+
+  <section class="head">
+    <div class="live"><i></i><b>LIVE</b><span>каталог — 1 681 позиция</span></div>
+    <h1>Доска в центре, <u>остальное</u> подтягивается к ней</h1>
+    <p>Крепления, ботинки и экипировка выбираются вокруг одной доски. Видно, что с чем связано, и сколько стоит всё вместе.</p>
+  </section>
+
+  <section class="net" id="net">
+    <svg class="lines" id="lines" aria-hidden="true">
+      <defs>
+        <linearGradient id="g1" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="10%" stop-color="#a78b71"/>
+          <stop offset="90%" stop-color="#c9b8a0"/>
+        </linearGradient>
+      </defs>
+    </svg>
+
+    <div class="hub">
+      <canvas id="c" aria-label="Трёхмерная модель сноуборда, можно вращать"></canvas>
+      <div class="cap">Потяните, чтобы повернуть</div>
+    </div>
+
+    <article class="sat s1"><div class="ph">фото из вашего каталога</div><b>Крепления</b><div class="pr">Union · цена из каталога</div></article>
+    <article class="sat s2"><div class="ph">фото из вашего каталога</div><b>Ботинки</b><div class="pr">цена из каталога</div></article>
+    <article class="sat s3"><div class="ph">фото из вашего каталога</div><b>Маска</b><div class="pr">цена из каталога</div></article>
+    <article class="sat s4"><div class="ph">фото из вашего каталога</div><b>Толстовка DC Shoes</b><div class="pr">3 150 ₽</div></article>
+  </section>
+
+  <div class="sum">
+    <div><div class="t">Комплект целиком</div><div class="v">— ₽</div></div>
+    <button class="pill">Забронировать примерку</button>
+  </div>
+
+  <p class="note">Это превью стиля, а не готовый сайт. Цена толстовки взята из вашего каталога ВКонтакте, остальные подставим оттуда же. Доска нарисована кодом: форма, прогиб и графика сгенерированы, это не фотография конкретной модели.</p>
+</div>
+
+<script type="module">
+import { createBoardScene } from './board.js';
+await document.fonts.ready;
+
+createBoardScene(document.getElementById('c'), {
+  deck:'#241b12', ink:'#e8d5b7', graphic:'gold', side:'#0a0806',
+  env:['#8a7660','#060606'],
+  key:'#fff1dd', keyI:3.6, rim:'#e8d5b7', rimI:2.6, fill:'#a78b71', fillI:0.8,
+  glow:'#6f5c47', glowSize:2.7, exposure:1.22,
+  yaw:-0.5, pitch:0.1, fit:3.0, roll:-0.62, autoSpin:0.0018
+});
+
+/* кривые от спутников к центральному узлу */
+const net = document.getElementById('net');
+const svg = document.getElementById('lines');
+const hub = document.querySelector('.hub');
+const sats = [...document.querySelectorAll('.sat')];
+
+function draw(){
+  if (window.innerWidth <= 960) return;
+  const n = net.getBoundingClientRect();
+  svg.setAttribute('viewBox', '0 0 ' + n.width + ' ' + n.height);
+  [...svg.querySelectorAll('path')].forEach(p => p.remove());
+  const h = hub.getBoundingClientRect();
+  const hx = h.left - n.left + h.width/2, hy = h.top - n.top + h.height/2;
+
+  sats.forEach((s, i) => {
+    const r = s.getBoundingClientRect();
+    const sx = r.left - n.left + r.width/2, sy = r.top - n.top + r.height/2;
+    const mx = (sx + hx)/2, my = (sy + hy)/2;
+    const bow = (i % 2 ? 1 : -1) * 70;
+    const d = 'M' + sx + ' ' + sy + ' C' + (mx + bow) + ' ' + sy + ', ' + (mx - bow) + ' ' + my + ', ' + hx + ' ' + hy;
+
+    const p = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+    p.setAttribute('d', d);
+    p.setAttribute('class', 'node-line');
+    p.setAttribute('stroke', 'url(#g1)');
+    p.style.animationDelay = (i * 0.45) + 's';
+    svg.appendChild(p);
+
+    const q = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+    q.setAttribute('d', d);
+    q.setAttribute('class', 'node-line dash');
+    q.setAttribute('stroke', '#e8d5b7');
+    svg.appendChild(q);
+  });
+}
+new ResizeObserver(draw).observe(net);
+draw();
+</script>
+</body>
+</html>

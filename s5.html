@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ледяной склад - превью стиля</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ice:#93a5b4; --panel:#7f94a7; --deep:#55697a;
+  --ink:#ffffff; --dim:#d2dce4; --soft:#b7c6d2;
+  --ease-out:cubic-bezier(.23,1,.32,1);
+}
+:root{ --panel2:#71889c; }
+*{box-sizing:border-box;margin:0;padding:0}
+html{-webkit-text-size-adjust:100%}
+body{
+  background:var(--ice); color:var(--ink);
+  font-family:Oswald,system-ui,sans-serif; font-weight:400; font-size:16px; line-height:1.5;
+  overflow-x:hidden;
+}
+.sheet{max-width:1180px;margin:0 auto;padding-left:22px;padding-right:22px}
+.mono{font-family:"IBM Plex Mono",monospace;font-size:10.5px;letter-spacing:.1em;color:var(--dim);line-height:1.8}
+
+.ribbon{
+  background:var(--deep);
+  font-family:"IBM Plex Mono",monospace;font-size:11px;letter-spacing:.1em;
+  padding:9px 22px;display:flex;gap:16px;flex-wrap:wrap;color:var(--dim);
+}
+.ribbon a{color:#fff}
+
+/* панель */
+.panel{background:var(--panel);margin-top:18px;border-radius:2px;overflow:hidden}
+nav{
+  display:flex;align-items:center;justify-content:space-between;gap:18px;
+  padding:16px 24px;border-bottom:1px solid rgba(255,255,255,.14);
+}
+.brand{font-weight:700;font-size:19px;letter-spacing:.06em;text-transform:uppercase}
+.brand sup{font-size:9px;vertical-align:super;font-weight:400}
+.nav-l{display:flex;gap:22px;font-family:"IBM Plex Mono",monospace;font-size:10.5px;letter-spacing:.12em;color:var(--dim)}
+.nav-r{display:flex;gap:7px}
+.sq{width:26px;height:26px;border:1px solid rgba(255,255,255,.3);display:grid;place-items:center;font-size:11px;color:var(--dim)}
+
+/* герой */
+.hero{position:relative;padding:34px 24px 0;display:grid;grid-template-columns:1fr 1fr;gap:16px;align-items:start}
+.htext{grid-row:1;grid-column:1;position:relative;z-index:3;padding-top:14px}
+.htitle{
+  font-weight:700;text-transform:uppercase;letter-spacing:-.01em;line-height:.95;
+  font-size:clamp(30px,4.6vw,58px);position:relative;z-index:3;
+}
+.htitle .q{color:var(--soft)}
+.hmeta{margin-top:20px;display:flex;gap:30px;flex-wrap:wrap;position:relative;z-index:3}
+
+.stage{
+  position:relative;grid-column:1/-1;grid-row:1;
+  height:clamp(340px,42vw,500px);z-index:2;pointer-events:none;
+  margin-left:auto;margin-right:4%;width:min(400px,46%);
+}
+.stage canvas{width:100%;height:100%;display:block;pointer-events:auto;cursor:grab}
+.stage canvas:active{cursor:grabbing}
+
+/* тег, нарисован от руки кодом */
+.tag{position:absolute;left:-34%;bottom:10%;width:min(250px,70%);z-index:4;opacity:.92;pointer-events:none}
+.tag path{fill:none;stroke:#fff;stroke-width:7;stroke-linecap:round;stroke-linejoin:round}
+
+.hbottom{
+  grid-column:1/-1;position:relative;z-index:3;
+  display:flex;justify-content:space-between;align-items:flex-end;gap:20px;flex-wrap:wrap;
+  padding-bottom:26px;
+}
+.htitle2{font-weight:700;text-transform:uppercase;line-height:.95;font-size:clamp(26px,4vw,50px);text-align:right;margin-left:auto}
+.htitle2 .q{color:var(--soft)}
+.buy{display:flex;align-items:center;gap:12px}
+.circ{
+  width:52px;height:52px;border-radius:50%;border:1px solid rgba(255,255,255,.5);
+  background:transparent;color:#fff;display:grid;place-items:center;font-size:18px;cursor:pointer;
+  transition:background-color .18s var(--ease-out),transform .14s var(--ease-out);
+}
+@media (hover:hover) and (pointer:fine){ .circ:hover{background:rgba(255,255,255,.16)} }
+.circ:active{transform:scale(.94)}
+.buy .pr{font-family:"IBM Plex Mono",monospace;font-size:15px;letter-spacing:.06em}
+.buy .pr small{display:block;font-size:9.5px;color:var(--dim);letter-spacing:.14em}
+
+/* склад */
+.inv{background:var(--panel2);padding:26px 24px 30px}
+.inv-top{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;margin-bottom:20px}
+.inv-top h2{font-weight:700;font-size:clamp(20px,2.6vw,28px);text-transform:uppercase;letter-spacing:.01em}
+.filt{border:1px solid rgba(255,255,255,.4);border-radius:999px;padding:6px 16px;font-family:"IBM Plex Mono",monospace;font-size:10.5px;letter-spacing:.12em;background:transparent;color:#fff;cursor:pointer}
+.grid{display:grid;grid-template-columns:repeat(5,1fr);gap:11px}
+.item{background:rgba(255,255,255,.1);border-radius:3px;padding:11px;display:flex;flex-direction:column;gap:9px}
+.item .ph{
+  aspect-ratio:3/4;border-radius:2px;
+  background:repeating-linear-gradient(135deg,rgba(255,255,255,.07) 0 9px,rgba(255,255,255,.02) 9px 18px);
+  display:grid;place-items:center;text-align:center;padding:10px;
+  font-family:"IBM Plex Mono",monospace;font-size:9.5px;color:var(--dim);line-height:1.6;
+}
+.item .nm{font-family:"IBM Plex Mono",monospace;font-size:10px;letter-spacing:.1em;color:var(--dim)}
+.item .tt{font-weight:500;font-size:14px;text-transform:uppercase;letter-spacing:.02em}
+.item .pp{font-family:"IBM Plex Mono",monospace;font-size:12px}
+.dot{display:inline-block;width:7px;height:7px;border-radius:50%;background:#fff;margin-right:5px;vertical-align:middle}
+
+/* гора */
+.ridge{position:relative;margin-top:0;background:var(--deep);overflow:hidden}
+.ridge svg{display:block;width:100%;height:clamp(180px,26vw,320px)}
+.ridge .over{
+  position:absolute;left:0;right:0;top:14%;text-align:center;
+  font-weight:700;text-transform:uppercase;font-size:clamp(40px,11vw,128px);line-height:.9;
+  color:transparent;-webkit-text-stroke:1.5px rgba(255,255,255,.5);letter-spacing:-.02em;
+}
+.ridge .sign{
+  position:absolute;left:24px;bottom:20px;font-weight:700;text-transform:uppercase;
+  font-size:clamp(18px,2.6vw,30px);line-height:1.02;
+}
+
+footer{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;padding:20px 24px;background:var(--panel)}
+.bars{display:flex;gap:2px;align-items:flex-end;height:30px}
+.bars i{display:block;width:2px;background:#fff}
+
+.note{
+  color:#4b5c6b;font-size:13px;line-height:1.7;font-family:Oswald,sans-serif;font-weight:400;
+  border-left:2px solid var(--deep);padding-left:15px;
+  margin-top:26px;margin-bottom:56px;max-width:64ch;
+}
+
+@media (max-width:900px){
+  .sheet{padding-left:14px;padding-right:14px}
+  .nav-l{display:none}
+  .hero{grid-template-columns:1fr;padding-left:16px;padding-right:16px}
+  .htext{grid-column:1/-1}
+  .stage{width:100%;grid-row:auto;height:auto;aspect-ratio:1/1;margin-right:0}
+  .tag{left:1%;bottom:4%;width:min(190px,54%)}
+  .htitle2{text-align:left;margin-left:0}
+  .grid{grid-template-columns:repeat(2,1fr)}
+  .inv{padding-left:16px;padding-right:16px}
+}
+</style>
+</head>
+<body>
+
+<div class="ribbon">ПРЕВЬЮ СТИЛЯ 5 ИЗ 5 — «ЛЕДЯНОЙ СКЛАД» <a href="index.html">← ВСЕ ВАРИАНТЫ</a></div>
+
+<div class="sheet">
+  <div class="panel">
+    <nav>
+      <div class="brand">Банан<sup>™</sup></div>
+      <div class="nav-l"><span>[ ДОСКИ ]</span><span>[ КРЕПЛЕНИЯ ]</span><span>[ БОТИНКИ ]</span><span>[ ОДЕЖДА ]</span><span>[ МАГАЗИНЫ ]</span></div>
+      <div class="nav-r"><span class="sq">↗</span><span class="sq">⌕</span></div>
+    </nav>
+
+    <section class="hero">
+      <div class="htext">
+        <h1 class="htitle">Когда начался<br>сезон, остальное<br><span class="q">подождёт</span></h1>
+        <div class="hmeta">
+          <div class="mono">[ КОЛЛЕКЦИЯ ]<br>[ ЗИМА 25/26 ]<br>[ ЧЕЛЯБИНСК ]</div>
+          <div class="mono">[ НАЛИЧИЕ ]<br>1 681 ПОЗИЦИЯ<br>2 МАГАЗИНА</div>
+        </div>
+      </div>
+
+      <div class="stage">
+        <canvas id="c" aria-label="Трёхмерная модель сноуборда, можно вращать"></canvas>
+        <svg class="tag" viewBox="0 0 300 120" aria-hidden="true">
+          <path d="M14 92c18-44 30-62 38-60 7 2 2 28-6 48-7 18-4 24 4 20 10-5 20-28 26-46 5-16 12-18 13-6 1 10-4 28-9 40-4 10 0 14 7 9 9-6 18-24 24-40 4-12 11-14 12-4 1 11-5 26-9 36-4 9 0 13 6 9 8-5 16-18 22-32"/>
+          <path d="M150 104c36-10 74-16 112-18"/>
+        </svg>
+      </div>
+
+      <div class="hbottom">
+        <div class="buy">
+          <button class="circ" aria-label="В корзину">↗</button>
+          <div class="pr">— ₽<small>ЦЕНА ИЗ КАТАЛОГА</small></div>
+        </div>
+        <h2 class="htitle2">Доску<br>выбираешь раз,<br><span class="q">катаешь всю зиму</span></h2>
+      </div>
+    </section>
+
+    <section class="inv">
+      <div class="inv-top">
+        <h2>Склад / наличие</h2>
+        <button class="filt">ФИЛЬТРЫ</button>
+      </div>
+      <div class="grid">
+        <article class="item">
+          <div class="ph">ФОТО<br>ИЗ ВАШЕГО<br>КАТАЛОГА</div>
+          <div class="nm">[ 01 ]</div><div class="tt">Толстовка</div>
+          <div class="mono"><span class="dot"></span>DC SHOES</div><div class="pp">3 150 ₽</div>
+        </article>
+        <article class="item">
+          <div class="ph">ФОТО<br>ИЗ ВАШЕГО<br>КАТАЛОГА</div>
+          <div class="nm">[ 02 ]</div><div class="tt">Толстовка</div>
+          <div class="mono"><span class="dot"></span>ROXY</div><div class="pp">3 390 ₽</div>
+        </article>
+        <article class="item">
+          <div class="ph">ФОТО<br>ИЗ ВАШЕГО<br>КАТАЛОГА</div>
+          <div class="nm">[ 03 ]</div><div class="tt">Толстовка</div>
+          <div class="mono"><span class="dot"></span>BURTON</div><div class="pp">3 590 ₽</div>
+        </article>
+        <article class="item">
+          <div class="ph">ФОТО<br>ИЗ ВАШЕГО<br>КАТАЛОГА</div>
+          <div class="nm">[ 04 ]</div><div class="tt">Толстовка</div>
+          <div class="mono"><span class="dot"></span>OSIRIS</div><div class="pp">5 430 ₽</div>
+        </article>
+        <article class="item">
+          <div class="ph">ФОТО<br>ИЗ ВАШЕГО<br>КАТАЛОГА</div>
+          <div class="nm">[ 05 ]</div><div class="tt">Доска</div>
+          <div class="mono"><span class="dot"></span>CAPITA</div><div class="pp">— ₽</div>
+        </article>
+      </div>
+    </section>
+
+    <section class="ridge">
+      <div class="over" aria-hidden="true">БАНАН</div>
+      <svg viewBox="0 0 1200 320" preserveAspectRatio="none" aria-hidden="true">
+        <polygon points="0,320 150,180 280,230 430,96 560,186 700,120 850,214 1000,150 1200,246 1200,320" fill="#495c6c"/>
+        <polygon points="430,96 470,140 505,118 560,186 490,186" fill="#9fb3c2" opacity=".55"/>
+        <polygon points="700,120 735,160 765,142 850,214 760,214" fill="#9fb3c2" opacity=".4"/>
+        <polygon points="0,320 200,246 400,286 600,230 800,280 1000,238 1200,290 1200,320" fill="#3e4f5e"/>
+      </svg>
+      <div class="sign">Выбран для холода<br>собран для гор</div>
+    </section>
+
+    <footer>
+      <div class="bars" aria-hidden="true"></div>
+      <div class="mono">СОНИ КРИВОЙ, 63 · ПР. ЛЕНИНА, 86<br>7 (351) 900-31-19 · 7 (351) 900-34-01</div>
+      <div class="mono">СДЭК / ПОЧТА РОССИИ<br>РОССИЯ · БЕЛАРУСЬ · КАЗАХСТАН</div>
+    </footer>
+  </div>
+
+  <p class="note">Это превью стиля, а не готовый сайт. Четыре цены взяты из вашего каталога ВКонтакте, фотографии товаров подставим ваши. Гора и подпись нарисованы кодом - фотографию поставим вашу или лицензионную. Тег придуман специально для превью, чужие марки не использую. Доска тоже сгенерирована кодом, это не снимок конкретной модели.</p>
+</div>
+
+<script type="module">
+import { createBoardScene } from './board.js';
+await document.fonts.ready;
+
+createBoardScene(document.getElementById('c'), {
+  deck:'#aab9c6', ink:'#44566a', graphic:'ice', side:'#55697a',
+  env:['#eaf1f6','#5c7084'],
+  key:'#ffffff', keyI:2.9, rim:'#dce7ef', rimI:1.6, fill:'#ffffff', fillI:0.7,
+  exposure:1.06, bindings:true, bindColor:'#5f7384', bindAccent:'#c9d6e0',
+  yaw:-0.42, pitch:0.06, fit:3.25, autoSpin:0.0016
+});
+
+const bars = document.querySelector('.bars');
+for (let i = 0; i < 48; i++){
+  const b = document.createElement('i');
+  b.style.height = (10 + (i * 37 % 20)) + 'px';
+  b.style.width = (i % 4 === 0 ? 3 : 1.5) + 'px';
+  bars.appendChild(b);
+}
+</script>
+</body>
+</html>

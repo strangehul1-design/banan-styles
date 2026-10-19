@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Банан Борд Шоп - пять стилей</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{ --bg:#111113; --card:#19191c; --line:#2a2a2f; --txt:#f0f0f2; --mut:#8e8e96;
+       --ease-out:cubic-bezier(.23,1,.32,1); }
+*{box-sizing:border-box;margin:0;padding:0}
+html{-webkit-text-size-adjust:100%}
+body{background:var(--bg);color:var(--txt);font-family:Inter,system-ui,sans-serif;font-size:16px;line-height:1.6}
+.sheet{max-width:960px;margin:0 auto;padding:56px 22px 70px}
+h1{font-size:clamp(26px,4vw,38px);font-weight:700;letter-spacing:-.02em;margin-bottom:12px}
+.lead{color:var(--mut);max-width:60ch;margin-bottom:38px}
+.list{display:grid;gap:14px}
+a.card{
+  display:grid;grid-template-columns:96px 1fr auto;gap:20px;align-items:center;
+  background:var(--card);border:1px solid var(--line);border-radius:14px;
+  padding:18px 20px;text-decoration:none;color:inherit;
+  transition:border-color .2s var(--ease-out),transform .2s var(--ease-out);
+}
+@media (hover:hover) and (pointer:fine){ a.card:hover{border-color:#4a4a52;transform:translateY(-2px)} }
+a.card:focus-visible{outline:2px solid #fff;outline-offset:3px}
+.sw{display:flex;height:52px;border-radius:8px;overflow:hidden}
+.sw i{flex:1}
+.card b{display:block;font-weight:600;font-size:17px;margin-bottom:3px}
+.card span{color:var(--mut);font-size:14px}
+.card .go{color:var(--mut);font-size:22px}
+.foot{color:var(--mut);font-size:13px;line-height:1.7;margin-top:34px;border-top:1px solid var(--line);padding-top:18px;max-width:64ch}
+@media (max-width:620px){
+  a.card{grid-template-columns:62px 1fr;gap:14px}
+  .card .go{display:none}
+}
+</style>
+</head>
+<body>
+<div class="sheet">
+  <h1>Банан Борд Шоп - пять стилей</h1>
+  <p class="lead">Пять превью одной и той же страницы. Это не сайты, а образцы подачи: по одному экрану на стиль, чтобы было видно, как будет выглядеть. В каждом есть 3D-доска - её можно крутить пальцем.</p>
+
+  <div class="list">
+    <a class="card" href="s1.html">
+      <div class="sw"><i style="background:#060a12"></i><i style="background:#121a2c"></i><i style="background:#e8ff3a"></i></div>
+      <div><b>1. Ночной склон</b><span>Тёмный с неоновым жёлтым. 3D - конфигуратор комплекта.</span></div>
+      <div class="go">→</div>
+    </a>
+    <a class="card" href="s2.html">
+      <div class="sw"><i style="background:#f6f4ef"></i><i style="background:#ffe14d"></i><i style="background:#0d0d0d"></i></div>
+      <div><b>2. Жёлтый зин</b><span>Светлый, крупная типографика. 3D - доска поверх заголовка.</span></div>
+      <div class="go">→</div>
+    </a>
+    <a class="card" href="s3.html">
+      <div class="sw"><i style="background:#0b0b0c"></i><i style="background:#26262a"></i><i style="background:#f2f2f3"></i></div>
+      <div><b>3. Горный монохром</b><span>Строгий чёрно-белый. 3D - подбор ростовки под рост.</span></div>
+      <div class="go">→</div>
+    </a>
+    <a class="card" href="s4.html">
+      <div class="sw"><i style="background:#0a0a0a"></i><i style="background:#a78b71"></i><i style="background:#e8d5b7"></i></div>
+      <div><b>4. Neural Noir</b><span>Чёрное стекло и золото. 3D - узел, к которому сходятся связи.</span></div>
+      <div class="go">→</div>
+    </a>
+    <a class="card" href="s5.html">
+      <div class="sw"><i style="background:#93a5b4"></i><i style="background:#71889c"></i><i style="background:#55697a"></i></div>
+      <div><b>5. Ледяной склад</b><span>Сине-серый монохром, узкий капс. 3D - товар вырезкой на плоском фоне.</span></div>
+      <div class="go">→</div>
+    </a>
+  </div>
+
+  <p class="foot">Цены, которые видно на превью, взяты из каталога ВКонтакте. Там, где стоит «— ₽», цену подставим из вашего каталога. Доска во всех пяти нарисована кодом: форма, прогиб и графика сгенерированы, это не фотография конкретной модели.</p>
+</div>
+</body>
+</html>

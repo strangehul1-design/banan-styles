@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ночной склон - превью стиля</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@600;800&family=Manrope:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#060a12; --bg2:#0a101b; --card:#0e1624; --line:#1c2635;
+  --txt:#e9eff8; --mut:#7e8fa6; --neon:#e8ff3a; --neon-dim:#9aad22;
+  --ease-out:cubic-bezier(.23,1,.32,1);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{-webkit-text-size-adjust:100%}
+body{
+  background:var(--bg); color:var(--txt);
+  font-family:Manrope,system-ui,sans-serif; font-size:17px; line-height:1.6;
+  overflow-x:hidden;
+}
+.sheet{max-width:1180px;margin:0 auto;padding-left:26px;padding-right:26px}
+
+/* ленточка превью */
+.ribbon{
+  background:var(--neon); color:#0b0f05;
+  font:700 12px/1 Manrope,sans-serif; letter-spacing:.06em;
+  padding:9px 26px; display:flex; gap:14px; flex-wrap:wrap; align-items:center;
+}
+.ribbon a{color:#0b0f05}
+
+header{
+  border-bottom:1px solid var(--line);
+  padding-top:18px; padding-bottom:18px;
+  display:flex; align-items:center; justify-content:space-between; gap:20px; flex-wrap:wrap;
+}
+.logo{font-family:Unbounded,sans-serif;font-weight:800;font-size:19px;letter-spacing:-.01em}
+.logo span{color:var(--neon)}
+.hmeta{color:var(--mut);font-size:14px;display:flex;gap:20px;flex-wrap:wrap}
+.hmeta b{color:var(--txt);font-weight:500}
+
+/* герой */
+.hero{
+  padding-top:68px; padding-bottom:40px;
+  display:grid; grid-template-columns:1.05fr .95fr; gap:40px; align-items:center;
+  position:relative;
+}
+.hero::before{
+  content:""; position:absolute; right:-6%; top:-10%;
+  width:620px; height:620px; border-radius:50%;
+  background:radial-gradient(circle,rgba(232,255,58,.10),transparent 68%);
+  pointer-events:none;
+}
+h1{
+  font-family:Unbounded,sans-serif; font-weight:800;
+  font-size:clamp(34px,5vw,58px); line-height:1.04; letter-spacing:-.02em;
+  margin-bottom:22px;
+}
+.lead{font-size:19px;color:#c3cfdf;max-width:48ch}
+.facts{display:flex;gap:28px;flex-wrap:wrap;margin-top:30px}
+.fact strong{display:block;font-family:Unbounded,sans-serif;font-size:26px;color:var(--neon);line-height:1.2}
+.fact span{font-size:13px;color:var(--mut)}
+
+.stage{position:relative;aspect-ratio:1/1.08;min-height:360px}
+.stage canvas{width:100%;height:100%;display:block;cursor:grab}
+.stage canvas:active{cursor:grabbing}
+.hint{
+  position:absolute;left:0;bottom:4px;font-size:12px;color:var(--mut);
+  letter-spacing:.04em;
+}
+
+/* конфигуратор */
+.conf{
+  margin-top:26px; margin-bottom:70px;
+  border:1px solid var(--line); border-radius:20px; background:var(--card);
+  padding:26px;
+}
+.conf h2{font-family:Unbounded,sans-serif;font-size:17px;font-weight:600;margin-bottom:4px}
+.conf .sub{color:var(--mut);font-size:14px;margin-bottom:22px}
+.rows{display:grid;gap:16px}
+.row{display:grid;grid-template-columns:130px 1fr;gap:16px;align-items:center}
+.row > .lbl{color:var(--mut);font-size:14px}
+.chips{display:flex;gap:9px;flex-wrap:wrap}
+.chip{
+  font:500 14px/1 Manrope,sans-serif; color:var(--txt);
+  background:#121c2c; border:1px solid var(--line); border-radius:999px;
+  padding:11px 17px; cursor:pointer;
+  transition:border-color .18s var(--ease-out), color .18s var(--ease-out), background-color .18s var(--ease-out);
+}
+@media (hover:hover) and (pointer:fine){ .chip:hover{border-color:#3a4a63} }
+.chip[aria-pressed="true"]{background:var(--neon);color:#0b0f05;border-color:var(--neon);font-weight:700}
+.chip:focus-visible{outline:2px solid var(--neon);outline-offset:3px}
+.total{
+  margin-top:24px;padding-top:20px;border-top:1px solid var(--line);
+  display:flex;justify-content:space-between;align-items:flex-end;gap:18px;flex-wrap:wrap;
+}
+.total .t1{color:var(--mut);font-size:14px}
+.total .t2{font-family:Unbounded,sans-serif;font-size:30px;color:var(--neon)}
+.cta{
+  background:var(--neon);color:#0b0f05;border:0;border-radius:999px;
+  font:700 15px/1 Manrope,sans-serif;padding:16px 28px;cursor:pointer;
+  transition:transform .14s var(--ease-out), filter .14s var(--ease-out);
+}
+@media (hover:hover) and (pointer:fine){ .cta:hover{filter:brightness(1.08)} }
+.cta:active{transform:scale(.97)}
+
+.note{
+  color:var(--mut);font-size:13px;line-height:1.7;
+  border-left:2px solid var(--line);padding-left:16px;margin-bottom:60px;max-width:62ch;
+}
+
+@media (max-width:900px){
+  .hero{grid-template-columns:1fr;padding-top:44px;gap:24px}
+  .stage{aspect-ratio:1/1;order:-1}
+  .row{grid-template-columns:1fr;gap:9px}
+  .sheet{padding-left:18px;padding-right:18px}
+  .conf{padding:20px}
+}
+</style>
+</head>
+<body>
+
+<div class="ribbon">Превью стиля 1 из 5 - «Ночной склон» <a href="index.html">← все варианты</a></div>
+
+<div class="sheet">
+  <header>
+    <div class="logo">БАНАН <span>БОРД ШОП</span></div>
+    <div class="hmeta">
+      <span>Сони Кривой, 63 · Ленина, 86</span>
+      <b>7 (351) 900-31-19</b>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div>
+      <h1>Соберите комплект на сезон за один вечер</h1>
+      <p class="lead">Доска, крепления и ботинки подбираются вместе, а не тремя походами в разные разделы. Крутите доску пальцем, меняйте модель - цена пересобирается сразу.</p>
+      <div class="facts">
+        <div class="fact"><strong>1 681</strong><span>позиция в каталоге</span></div>
+        <div class="fact"><strong>2</strong><span>магазина в Челябинске</span></div>
+        <div class="fact"><strong>3</strong><span>страны доставки СДЭК</span></div>
+      </div>
+    </div>
+    <div class="stage">
+      <canvas id="c" aria-label="Трёхмерная модель сноуборда, можно вращать"></canvas>
+      <div class="hint">потяните доску, чтобы повернуть</div>
+    </div>
+  </section>
+
+  <section class="conf">
+    <h2>Комплект на сезон</h2>
+    <p class="sub">Выбор меняет внешний вид доски на экране.</p>
+    <div class="rows">
+      <div class="row">
+        <div class="lbl">Стиль катания</div>
+        <div class="chips" id="style" role="group" aria-label="Стиль катания">
+          <button class="chip" aria-pressed="true" data-deck="#121a2c" data-ink="#e8ff3a" data-g="stripe">Парк</button>
+          <button class="chip" aria-pressed="false" data-deck="#0d1f1a" data-ink="#7ef5c0" data-g="mono">Вся гора</button>
+          <button class="chip" aria-pressed="false" data-deck="#2a1430" data-ink="#ff9ad5" data-g="banana">Фрирайд</button>
+        </div>
+      </div>
+      <div class="row">
+        <div class="lbl">Бренд доски</div>
+        <div class="chips" role="group" aria-label="Бренд доски">
+          <button class="chip" aria-pressed="true">Burton</button>
+          <button class="chip" aria-pressed="false">Capita</button>
+          <button class="chip" aria-pressed="false">Lib Tech</button>
+        </div>
+      </div>
+      <div class="row">
+        <div class="lbl">Крепления</div>
+        <div class="chips" role="group" aria-label="Крепления">
+          <button class="chip" aria-pressed="true">Union</button>
+          <button class="chip" aria-pressed="false">Burton</button>
+        </div>
+      </div>
+    </div>
+    <div class="total">
+      <div>
+        <div class="t1">Комплект целиком</div>
+        <div class="t2">— ₽</div>
+      </div>
+      <button class="cta">Забронировать примерку</button>
+    </div>
+  </section>
+
+  <p class="note">Это превью стиля, а не готовый сайт. Модели, фотографии и цены подставим из вашего каталога - в каталоге ВКонтакте их 1 681. Доска на экране нарисована кодом: форма, прогиб и графика сгенерированы, это не фотография конкретной модели.</p>
+</div>
+
+<script type="module">
+import { createBoardScene } from './board.js';
+await document.fonts.ready;
+const scene = createBoardScene(document.getElementById('c'), {
+  deck:'#121a2c', ink:'#e8ff3a', graphic:'stripe', side:'#070a10',
+  env:['#36405a','#05070c'],
+  key:'#ffffff', keyI:2.8, rim:'#e8ff3a', rimI:1.5, fill:'#88a8ff', fillI:0.5,
+  glow:'#e8ff3a', glowSize:4.2, bindings:true,
+  bindColor:'#161c28', bindAccent:'#e8ff3a',
+  yaw:-0.6, pitch:0.12, fit:3.35, roll:-0.3
+});
+
+document.querySelectorAll('.chips').forEach(group => {
+  group.addEventListener('click', e => {
+    const b = e.target.closest('.chip');
+    if (!b) return;
+    group.querySelectorAll('.chip').forEach(c => c.setAttribute('aria-pressed', String(c === b)));
+    if (b.dataset.deck) scene.setDeck({ deck:b.dataset.deck, ink:b.dataset.ink, graphic:b.dataset.g });
+  });
+});
+</script>
+</body>
+</html>
